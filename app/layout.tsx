@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
+import LookSwitch from "@/components/LookSwitch";
+import { LOOK_BOOT } from "@/lib/looks";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
@@ -17,7 +20,8 @@ const PHONE = "416-555-0142";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" className={archivo.variable}>
+    <html lang="en-CA" className={`${archivo.variable} ${mono.variable}`} data-look="a" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: LOOK_BOOT }} /></head>
       <body>
         <div className="notice">Sample site for review. Rates, names, phone numbers and addresses are placeholders.</div>
         <header className="wrap">
@@ -52,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </ul>
           </div>
         </footer>
+        <LookSwitch />
       </body>
     </html>
   );

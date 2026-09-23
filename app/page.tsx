@@ -1,8 +1,17 @@
 import Link from "next/link";
+import HeroMedia from "@/components/HeroMedia";
 import QuoteTool from "@/components/QuoteTool";
 import { SPEEDS, MIN_ORDER, cad, type SpeedId } from "@/lib/pricing";
 
 const PHONE = "416-555-0142";
+
+const PARTS: Array<[string, string]> = [
+  ["Hex bolts", "M3 × 12, steel"],
+  ["Output flange", "Nylon CF, FDM"],
+  ["Sun and planet gears", "Tough resin, SLA"],
+  ["Ring gear", "PETG, FDM"],
+  ["Housing", "ASA, FDM"],
+];
 
 const faqs = [
   ["Which files can I upload?", "STL today. STEP, 3MF and OBJ are added when the geometry service goes live. If your file will not load, email it and we will price it by hand within two business hours."],
@@ -17,19 +26,44 @@ export default function Home() {
   const speeds = Object.keys(SPEEDS) as SpeedId[];
   return (
     <>
-      <div className="wrap hero">
-        <div className="hero-copy">
-          <h1 className="layered">Upload a part. See the price in dollars. Hold it in three days.</h1>
-          <p className="lede">FDM and SLA printed in our Mississauga shop, priced in seconds, checked by an engineer you can call.</p>
+      <section className="hx" data-state="idle">
+        <div className="wrap hx-inner">
+          <div className="hx-copy">
+            <p className="eyebrow">3D printing in the GTA <i aria-hidden="true">/</i> priced in CAD</p>
+            <h1 className="layered">Upload a part. See the price in dollars. Hold it in three days.</h1>
+            <p className="lede">FDM and SLA printed in our Mississauga shop, priced in seconds, checked by an engineer you can call.</p>
+            <div className="row">
+              <a className="btn plate" href="#price">Price your part</a>
+              <a className="btn ghost" href="#speed">See lead times</a>
+            </div>
+          </div>
+          <HeroMedia />
+          <ol className="callouts" aria-label="Parts in this printed gearbox">
+            {PARTS.map(([name, spec], i) => (
+              <li key={name} style={{ "--i": i } as React.CSSProperties}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <b>{name}</b>
+                <em>{spec}</em>
+              </li>
+            ))}
+          </ol>
+          <p className="hx-caption">Planetary gearbox: five parts, three materials, one order.</p>
         </div>
-        <div className="hero-tool"><QuoteTool compact /></div>
+      </section>
+
+      <section className="wrap price-band" id="price">
+        <div className="price-copy">
+          <h2>Price it now</h2>
+          <p className="sub">Drop an STL or try our sample bracket. It is priced in your browser; nothing uploads until you order.</p>
           <ul className="proof">
             <li>All-in price in CAD before you pay, with tax and shipping shown</li>
             <li>Expedited orders ship in 24 to 72 hours, or pick up at our counter</li>
             <li>Every file reviewed by a named engineer before it prints</li>
             <li>Purchase orders and net-30 accounts for businesses</li>
           </ul>
-      </div>
+        </div>
+        <div className="hero-tool"><QuoteTool compact /></div>
+      </section>
 
       <section className="band">
         <div className="wrap">

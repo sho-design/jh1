@@ -16,15 +16,19 @@
     "next": "16.3.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "stripe": "22.6.2"
+    "stripe": "22.6.2",
+    "three": "0.186.0"
   },
   "devDependencies": {
     "@types/node": "22.20.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
     "drizzle-kit": "0.31.11",
     "typescript": "5.9.3",
     "vitest": "4.1.11"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

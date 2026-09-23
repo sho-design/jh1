@@ -1,5 +1,5 @@
 import Link from "next/link";
-import HeroMedia from "@/components/HeroMedia";
+import ExplodedGearbox from "@/components/ExplodedGearbox";
 import QuoteTool from "@/components/QuoteTool";
 import { SPEEDS, MIN_ORDER, cad, type SpeedId } from "@/lib/pricing";
 
@@ -26,28 +26,32 @@ export default function Home() {
   const speeds = Object.keys(SPEEDS) as SpeedId[];
   return (
     <>
-      <section className="hx" data-state="idle">
-        <div className="wrap hx-inner">
-          <div className="hx-copy">
-            <p className="eyebrow">3D printing in the GTA <i aria-hidden="true">/</i> priced in CAD</p>
-            <h1 className="layered">Upload a part. See the price in dollars. Hold it in three days.</h1>
-            <p className="lede">FDM and SLA printed in our Mississauga shop, priced in seconds, checked by an engineer you can call.</p>
-            <div className="row">
-              <a className="btn plate" href="#price">Price your part</a>
-              <a className="btn ghost" href="#speed">See lead times</a>
+      <section className="hx">
+        <div className="hx-stage">
+          <ExplodedGearbox />
+          <div className="wrap hx-inner">
+            <div className="hx-copy">
+              <p className="eyebrow">3D printing in the GTA <i aria-hidden="true">/</i> priced in CAD</p>
+              <h1 className="layered">Upload a part. See the price in dollars. Hold it in three days.</h1>
+              <p className="lede">FDM and SLA printed in our Mississauga shop, priced in seconds, checked by an engineer you can call.</p>
+              <div className="row">
+                <a className="btn plate" href="#price">Price your part</a>
+                <a className="btn ghost" href="#speed">See lead times</a>
+              </div>
             </div>
+            <ol className="callouts" aria-label="Parts in this printed gearbox">
+              {PARTS.map(([name, spec], i) => (
+                <li key={name}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  <b>{name}</b>
+                  <em>{spec}</em>
+                </li>
+              ))}
+            </ol>
+            <p className="hx-now" aria-hidden="true" />
+            <p className="hx-caption">Planetary gearbox: five parts, three materials, one order.</p>
+            <p className="hx-hint" aria-hidden="true">Scroll to take it apart</p>
           </div>
-          <HeroMedia />
-          <ol className="callouts" aria-label="Parts in this printed gearbox">
-            {PARTS.map(([name, spec], i) => (
-              <li key={name} style={{ "--i": i } as React.CSSProperties}>
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                <b>{name}</b>
-                <em>{spec}</em>
-              </li>
-            ))}
-          </ol>
-          <p className="hx-caption">Planetary gearbox: five parts, three materials, one order.</p>
         </div>
       </section>
 

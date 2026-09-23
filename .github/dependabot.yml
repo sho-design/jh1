@@ -2,9 +2,15 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: "/"
+    target-branch: main
     schedule:
       interval: weekly
+    # Major upgrades (TypeScript, vitest, Next, React) are done by hand in a reviewed PR.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
+    target-branch: main
     schedule:
       interval: monthly

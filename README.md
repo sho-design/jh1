@@ -46,7 +46,7 @@ Changing any rate without bumping `PRICING_VERSION` and updating the locked valu
 | --- | --- | --- |
 | `STRIPE_SECRET_KEY` | Vercel | Enables real checkout (use test keys first) |
 | `STRIPE_TAX` | Vercel | Set to `on` once Stripe Tax is configured for GST and HST |
-| `NEXT_PUBLIC_SITE_URL` | Vercel | Redirect URLs and sitemap |
+| `NEXT_PUBLIC_SITE_URL` | Vercel (optional) | Redirect URLs and sitemap. Leave unset to use the Vercel production URL |
 | `DATABASE_URL` | Vercel (Neon integration) | Postgres connection |
 
 ## Build sequence

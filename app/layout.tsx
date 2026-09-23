@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import Link from "next/link";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://jh1.vercel.app"),
+  metadataBase: new URL(siteUrl()),
   title: "JH1 Parts | 3D printing in Toronto, priced instantly in CAD",
   description:
     "Upload an STL and see an all-in Canadian price in seconds. FDM and SLA printed in our GTA shop, delivered in 24 to 72 hours on Expedited. A named engineer checks every file.",

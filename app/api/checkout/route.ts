@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { quote, MATERIALS, FINISHES, SPEEDS, type FinishId, type SpeedId, type Geometry } from "@/lib/pricing";
+import { siteUrl } from "@/lib/site";
 
 /**
  * Creates a Stripe Checkout Session in CAD. The price is recomputed on the
@@ -35,7 +36,7 @@ export async function POST(req: Request) {
   }
 
   const stripe = new Stripe(key);
-  const site = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(req.url).origin;
+  const site = siteUrl(new URL(req.url).origin);
   const material = MATERIALS.find((m) => m.id === body.materialId)!;
   const qty = Math.max(1, Math.min(500, Math.floor(body.quantity ?? 1)));
 
